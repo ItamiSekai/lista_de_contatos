@@ -4,7 +4,7 @@
 
 int main()
 {
-    // Criar lista
+    /// Criar lista
     Lista *li = NULL;
     if ((li = geraLista()) == NULL){
         abortaPrograma();
@@ -31,27 +31,36 @@ int main()
         case 1:
             system("cls");
             CLIENTE cli = coletaDados();
-            if (verificaId(li, cli.id)){
-                char escolha;
+            char escolha;
+
+            // Chega se o id eh igual, se for ele mantem a execucao do while ate ser diferente
+            while (verificaId(li, cli.id)){
                 printf("\nUsuario com esse numero de identificacao ja foi inserido.");
                 printf("\nDeseja refazer a insercao?(S/N):  ");
+                fflush(stdin);
                 escolha = getchar();
                 if (escolha == 'S'){
                     cli = coletaDados();
                 }
                 else{
-                    printf("Voce sera redirecionado ao menu...");
+                    printf("Voce sera redirecionado ao menu...\n");
+                    system("pause");
                     break;
                 }
             }
-            else{
-
+            // Se saiu do While, entao o id nao esta repetindo, assim podendo inserir na lista
+            // Caso conseguia inserir, mostra uma mensagem de sucesso, em caso de erro ele retorna para o menu
+            if (insereOrdenado(li, cli)){
+                system("cls");
+                printf("\nUsuario inserido com sucesso!!\n");
+                break;
             }
+            printf("Erro ao inserir...");
             system("pause");
             break;
         case 2:
             system("cls");
-
+            listarLista(li);
             system("pause");
             break;
         case 3:
@@ -76,9 +85,8 @@ int main()
             break;
         case 7:
             system("cls");
-            printf("Saindo... ");
-            system("pause");
-            break;
+            printf("Saindo... \n");
+            exit(1);
         default:
             system("cls");
             printf("Opcao invalida, tente novamente.\n");
@@ -88,7 +96,8 @@ int main()
     system("cls");
     }while(opcao != 6);
 
-
+    apagaLista(li);
+    return 0;
 }
 
 /// PROJETO AAA

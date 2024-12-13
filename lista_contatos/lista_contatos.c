@@ -4,7 +4,7 @@
 // Criando o conteudo da lista
 struct conteudo{
     CLIENTE dados;
-    struct conteudo *prox;
+    struct conteudo* prox;
 };
 typedef struct conteudo CONT;
 
@@ -28,24 +28,24 @@ void abortaPrograma(){
 CLIENTE coletaDados(){
     CLIENTE cli;
     printf("\nDIGITE OS DADOS DO CLIENTE:");
-    printf("\n\nNumero de Identificacao: ");
+    printf("\n\nNUMERO DE IDENTIFICACAO: ");
     scanf("%d", &cli.id);
-    printf("Nome Completo: ");
+    printf("NOME COMPLETO..........: ");
     fflush(stdin);
     fgets(cli.nome, 34, stdin);
-    printf("Empresa: ");
+    printf("EMPRESA................: ");
     fflush(stdin);
     fgets(cli.empresa, 34, stdin);
-    printf("Departamento: ");
+    printf("DEPARTAMENTO...........: ");
     fflush(stdin);
     fgets(cli.departamento, 34, stdin);
-    printf("Telefone Fixo: ");
+    printf("TELEFONE FIXO..........: ");
     fflush(stdin);
     fgets(cli.telefone_fixo, 19, stdin);
-    printf("Celular: ");
+    printf("CELULAR................: ");
     fflush(stdin);
     fgets(cli.celular, 19, stdin);
-    printf("Email: ");
+    printf("EMAIL..................: ");
     fflush(stdin);
     fgets(cli.email, 34, stdin);
 
@@ -53,11 +53,12 @@ CLIENTE coletaDados(){
 }
 
 // Consulta Usuario Por ID
-int verificaId(Lista *li, int id){
+int verificaId(Lista* li, int id){
     if(li == NULL){
         printf("Erro! Lista nao existe...");
+        return 0;
     }
-    Lista pont = li;
+    CONT* pont = *li;
     while(pont != NULL){
         if (pont->dados.id == id){
             return 1;
@@ -66,6 +67,18 @@ int verificaId(Lista *li, int id){
     }
     return 0;
 }
+
+// Verifica lista vazia
+int listaVazia(Lista *li){
+    if(li == NULL){
+        abortaPrograma();
+    }
+    if(*li == NULL){
+        return 1;
+    }
+    return 0;
+}
+
 
 // Insercao para a Lista
 int insereOrdenado(Lista *li, CLIENTE cli){
@@ -105,7 +118,7 @@ int insereOrdenado(Lista *li, CLIENTE cli){
 // Apagar lista (liberar memoria)
 void apagaLista(Lista *li){
     if(li != NULL){
-        ELEM *no;
+       CONT *no;
         while((*li) != NULL){
             no = *li;
             *li = (*li)->prox;
@@ -114,4 +127,28 @@ void apagaLista(Lista *li){
         free(li);
     }
 }
+
+void listarLista(Lista *li){
+    if(li == NULL){
+        abortaPrograma();
+    }
+    CLIENTE cli;
+    CONT* elem = *li;
+    while (elem != NULL){
+        cli = elem->dados;
+        printf("-------------------------------------\n");
+        printf("===========DADOS DO CLIENTE==========:");
+        printf("\nNUMERO DE IDENTIFICACAO: %d", cli.id);
+        printf("\nNOME COMPLETO..........: %s", cli.nome);
+        printf("EMPRESA................: %s", cli.empresa);
+        printf("DEPARTAMENTO...........: %s", cli.departamento);
+        printf("TELEFONE FIXO..........: %s", cli.telefone_fixo);
+        printf("CELULAR................: %s", cli.celular);
+        printf("EMAIL..................: %s", cli.email);
+        printf("-------------------------------------\n");
+        elem = elem->prox;
+    }
+}
+
+
 
