@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
+#include <ctype.h>
 #include "lista_contatos.h"
 
 int main()
@@ -13,17 +15,17 @@ int main()
     /// Menu de Opcoes
     int opcao = 0;
     do{
-    printf("  |LISTA DE CONTATOS| \n");
-    printf("=========MENU=========\n");
-    printf("| Escolha uma opcao: |\n");
-    printf("| 1. Inserir dados   |\n");
-    printf("| 2. Listar todos    |\n");
-    printf("| 3. Busca unica     |\n");
-    printf("| 4. Busca por nome  |\n");
-    printf("| 5. Edicao de dados |\n");
-    printf("| 6. Remocao         |\n");
-    printf("| 7. Sair            |\n");
-    printf("=========MENU=========\n\n");
+    printf("       |LISTA DE CONTATOS| \n\n");
+    printf("=============MENU=============\n");
+    printf("| Escolha uma opcao:         |\n");
+    printf("| 1. Inserir dados           |\n");
+    printf("| 2. Listar todos            |\n");
+    printf("| 3. Busca unica             |\n");
+    printf("| 4. Busca por nome          |\n");
+    printf("| 5. Edicao de dados         |\n");
+    printf("| 6. Remocao                 |\n");
+    printf("| 7. Sair                    |\n");
+    printf("=============MENU=============\n\n");
     printf("Digite: ");
     scanf("%d", &opcao);
 
@@ -65,12 +67,21 @@ int main()
             break;
         case 3:
             system("cls");
-
+            int id;
+            printf("\nDigite o numero de identificacao: ");
+            fflush(stdin);
+            scanf("%d", &id);
+            listaUnica(li, id);
             system("pause");
             break;
         case 4:
             system("cls");
-
+            char nome[35];
+            printf("\nDigite o nome: ");
+            fflush(stdin);
+            fgets(nome, 34, stdin);
+            nome[strcspn(nome, "\n")] = '\0';
+            buscaNome(li, nome);
             system("pause");
             break;
         case 5:

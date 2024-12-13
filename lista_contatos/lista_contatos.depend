@@ -1,13 +1,17 @@
 # depslib dependency file v1.0
-1734035870 source:c:\users\gabri\onedrive\documents\estudos\lista_de_contatos\lista_contatos\lista_contatos.c
+1734055276 source:c:\users\gabri\onedrive\documents\estudos\lista_de_contatos\lista_contatos\lista_contatos.c
 	<stdio.h>
 	<stdlib.h>
+	<strings.h>
+	<ctype.h>
 	"lista_contatos.h"
 
-1734034254 c:\users\gabri\onedrive\documents\estudos\lista_de_contatos\lista_contatos\lista_contatos.h
+1734050747 c:\users\gabri\onedrive\documents\estudos\lista_de_contatos\lista_contatos\lista_contatos.h
 
-1734035683 source:c:\users\gabri\onedrive\documents\estudos\lista_de_contatos\lista_contatos\main.c
+1734055390 source:c:\users\gabri\onedrive\documents\estudos\lista_de_contatos\lista_contatos\main.c
 	<stdio.h>
 	<stdlib.h>
+	<strings.h>
+	<ctype.h>
 	"lista_contatos.h"
 
