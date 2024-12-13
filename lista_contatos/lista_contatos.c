@@ -85,7 +85,6 @@ int listaVazia(Lista *li){
     return 0;
 }
 
-
 // Insercao para a Lista
 int insereOrdenado(Lista *li, CLIENTE cli){
     if(li == NULL){
@@ -183,7 +182,7 @@ void listaUnica(Lista *li, int id){
     printf("\nErro ao procurar cadastro...\n");
 }
 
-// Colocando todas em letras minusculas
+// So para colocar todas as letras em minusculas
 char *strlwr(char *str) {
     char *p = str;
     while (*str) {

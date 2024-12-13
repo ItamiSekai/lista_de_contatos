@@ -45,7 +45,11 @@ void listarLista(Lista *li);
 /// Busca individual por Id
 void listaUnica(Lista *li, int id);
 
+/// Mudar a string toda para minuscula
+char *strlwr(char *str);
+
 /// Busca pelo nome, podendo achar mais de um cliente
 void buscaNome(Lista *li, char nome[35]);
+
 
 #endif // LISTA_CONTATOS_H_INCLUDED
