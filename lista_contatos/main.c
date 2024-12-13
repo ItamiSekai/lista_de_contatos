@@ -41,7 +41,7 @@ int main()
                 printf("\nDeseja refazer a insercao?(S/N):  ");
                 fflush(stdin);
                 escolha = getchar();
-                if (escolha == 'S'){
+                if (escolha == 'S' || escolha == 's'){
                     cli = coletaDados();
                 }
                 else{
@@ -52,14 +52,23 @@ int main()
             }
             // Se saiu do While, entao o id nao esta repetindo, assim podendo inserir na lista
             // Caso conseguia inserir, mostra uma mensagem de sucesso, em caso de erro ele retorna para o menu
-            if (insereOrdenado(li, cli)){
-                system("cls");
-                printf("\nUsuario inserido com sucesso!!\n");
-                break;
+            if (!verificaId(li, cli.id)){
+                if (insereOrdenado(li, cli)){
+                    system("cls");
+                    printf("\nUsuario inserido com sucesso!!\n\n");
+                }else{
+                    printf("\nErro ao inserir usuario....");
+                }
             }
-            printf("Erro ao inserir...");
+            else{
+                printf("\nVoltando ao menu...\n");
+            }
+            printf("\nErro ao inserir...\n\n");
             system("pause");
             break;
+
+            system("pause");
+                    break;
         case 2:
             system("cls");
             listarLista(li);
@@ -86,12 +95,26 @@ int main()
             break;
         case 5:
             system("cls");
-
+            printf("\nDigite o numero de identificacao: ");
+            fflush(stdin);
+            scanf("%d", &id);
+            editarCliente(li, id);
             system("pause");
             break;
         case 6:
             system("cls");
-
+            printf("Qual o numero de identificacao? ");
+            scanf(" %d", &id);
+            listaUnica(li, id); // Mostra os dados ao usuario
+            printf("\nDeseja realmente remover (S/N): ");
+            scanf(" %c", &escolha);
+            if (escolha == 's' || escolha == 'S'){
+                removeOrdenado(li, id);
+                printf("\nUsuario removido com sucesso!\n\n");
+                system("pause");
+                break;
+            }
+            printf("Retornando ao menu...\n\n");
             system("pause");
             break;
         case 7:

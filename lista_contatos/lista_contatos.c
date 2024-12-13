@@ -98,7 +98,7 @@ int insereOrdenado(Lista *li, CLIENTE cli){
     if(listaVazia(li)){
         no->prox = (*li);
         *li = no;
-        return cli.id;
+        return 1;
     }
     else{
         CONT *ant, *atual = *li;
@@ -116,7 +116,7 @@ int insereOrdenado(Lista *li, CLIENTE cli){
             no->prox = ant->prox;
             ant->prox = no;
         }
-        return cli.id;
+        return 1;
     }
 }
 
@@ -141,8 +141,9 @@ void listarLista(Lista *li){
     CLIENTE cli;
     CONT* elem = *li;
     while (elem != NULL){
+        cli = elem->dados;
         printf("\n-------------------------------------\n");
-        printf("===========DADOS DO CLIENTE==========:");
+        printf("===========DADOS DO CLIENTE==========");
         printf("\nNUMERO DE IDENTIFICACAO: %d", cli.id);
         printf("\nNOME COMPLETO..........: %s", cli.nome);
         printf("\nEMPRESA................: %s", cli.empresa);
@@ -179,7 +180,9 @@ void listaUnica(Lista *li, int id){
         }
         elem = elem->prox;
     }
-    printf("\nErro ao procurar cadastro...\n");
+    if (elem == NULL){
+        printf("\nErro ao procurar cadastro...\n");
+    }
 }
 
 // So para colocar todas as letras em minusculas
@@ -225,5 +228,68 @@ void buscaNome(Lista *li, char nome[35]){
     }
 }
 
+// Busca usuario pelo id, possibilitando edicao dos seus dados
+CLIENTE editarCliente (Lista *li, int id){
+    if(li == NULL){
+        abortaPrograma();
+    }
+    CLIENTE cli;
+    CONT* elem = *li;
+    char escolha;
+    while (elem != NULL){
+        cli = elem->dados;
+        if (id == cli.id){ // Procura usuario por id
+            listaUnica(li, id); // Mostra os dados ao usuario
+            printf("\nDeseja realmente alterar os dados?(S/N): ");
+            scanf(" %c", &escolha);
+            if(escolha == 'S' || escolha == 's'){
 
+                removeOrdenado(li, id); // Remove primeiro para poder colocar outro no lugar
+                cli = coletaDados(); // Apos remover, coleta os dados da edicao
 
+                if (insereOrdenado(li, cli)){ // Verifica a insercao
+                    system("cls");
+                    printf("\nUsuario alterado com sucesso!!\n\n");
+                    break;
+                }
+                else{
+                    printf("Erro ao editar... \n");
+                }
+                break;
+            }
+            // Caso o usuario digite qualquer outra coisa ele retorna ao menu
+            printf("Retornando ao menu...\n\n");
+            break;
+        }
+        elem = elem->prox;
+    }
+    // Caso nao ache o id
+    if (elem == NULL){
+        printf("\nErro ao procurar cadastro...\n");
+    }
+}
+
+// Remove dados procurando pelo id
+int removeOrdenado(Lista *li, int id){
+    int identificao;
+    if(li == NULL){
+        abortaPrograma();
+    }
+    CONT *ant, *no = *li;
+    while(no != NULL && no->dados.id != id){ // Procura o id
+        ant = no;
+        no = no->prox;
+    }
+    if(no == NULL){
+        return 0;
+    }
+    if(no == *li){
+        *li = no->prox;
+    }
+    else{
+        ant->prox = no->prox;
+    }
+    identificao = no->dados.id;
+    free(no); // Libera a memoria alocada, apagando os dados da lista com aquele id
+    return 1;
+}

@@ -24,13 +24,24 @@ Lista *geraLista();
 /// Funcao para coleta de dados, ele preenche e retorna uma estrutura cliente
 CLIENTE coletaDados();
 
-/** Recebe uma lista e um id, fazendo uma busca pelos elementos. Podendo gerar dois casos:
-/   Caso seja verdadeiro, retorna 1.
-/   Caso seja falso, retorna 0;
-*/
+/******************************************************************************************
+ * @brief Realiza a busca de um elemento em uma lista pelo ID fornecido.
+ *
+ * @param lista, Ponteiro para a lista onde será realizada a busca.
+ * @param id, ID do elemento que será procurado.
+ *
+ * @return int, Retorna 1 se o elemento for encontrado, ou 0 caso contrário.
+ ******************************************************************************************/
 int verificaId(Lista *li, int id);
 
-/// Insere a estrutura cliente, antes coletada, dentro da lista.
+/******************************************************************************************
+ * @brief Insere dentro da lista uma estrutura cliente ja preenchida.
+ *
+ * @param lista, Ponteiro para a lista onde será realizada a busca.
+ * @param cli, Estrutura cliente que sera inserida.
+ *
+ * @return int, Retorna 1 se o elemento for encontrado, ou 0 caso contrário.
+ ******************************************************************************************/
 int insereOrdenado(Lista *li, CLIENTE cli);
 
 /// Liberar memoria alocada, apagar lista
@@ -51,5 +62,10 @@ char *strlwr(char *str);
 /// Busca pelo nome, podendo achar mais de um cliente
 void buscaNome(Lista *li, char nome[35]);
 
+/// Busca cliente pelo Id, coletando os dados novamente caso encontre
+CLIENTE editarCliente (Lista *li, int id);
+
+/// Remove dados da lista
+int removeOrdenado(Lista *li, int id);
 
 #endif // LISTA_CONTATOS_H_INCLUDED
