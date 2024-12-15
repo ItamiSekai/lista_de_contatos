@@ -2,19 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4057" topLine="25" />
-		</Cursor>
-	</File>
-	<File name="lista_contatos.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2319" topLine="50" />
+			<Cursor1 position="15" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="lista_contatos.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7958" topLine="6" />
+			<Cursor1 position="9538" topLine="35" />
 		</Cursor>
 		<Folding>
 			<Collapse line="7" />
@@ -26,9 +21,18 @@
 			<Collapse line="88" />
 			<Collapse line="123" />
 			<Collapse line="136" />
+			<Collapse line="159" />
 			<Collapse line="188" />
 			<Collapse line="198" />
 			<Collapse line="231" />
+			<Collapse line="272" />
+			<Collapse line="297" />
+			<Collapse line="324" />
 		</Folding>
+	</File>
+	<File name="lista_contatos.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1165" topLine="35" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
