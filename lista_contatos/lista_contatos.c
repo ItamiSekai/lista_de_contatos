@@ -293,3 +293,51 @@ int removeOrdenado(Lista *li, int id){
     free(no); // Libera a memoria alocada, apagando os dados da lista com aquele id
     return 1;
 }
+
+// Salva dados em arquivo externo
+void salvaDados(Lista *li, char *arquivo) {
+    listaVazia(li);
+
+    // Abrir o arquivo em modo de escrita binária
+    FILE *f = fopen(arquivo, "wb");
+    if (f == NULL) { // Aviso caso nao abra
+        printf("\nErro ao abrir o arquivo para escrita...\n\n");
+        system("pause");
+        return;
+    }
+
+    CONT *elem = *li;
+
+    // Percorre a lista e grava cada cliente no arquivo
+    while (elem != NULL) {
+        if (fwrite(&elem->dados, sizeof(CLIENTE), 1, f) != 1) {
+            printf("\nErro ao salvar dados...\n\n");
+            fclose(f);
+            return;
+        }
+        elem = elem->prox;
+    }
+
+    fclose(f);
+}
+
+// Abre arquivo no inicio do programa
+void carregaDados(Lista *li, char *arquivo) {
+
+    // Abrir o arquivo em modo de leitura binária
+    FILE *f = fopen(arquivo, "rb");
+    if (f == NULL) {
+        printf("Nenhum arquivo encontrado....\n\n");
+        return;
+    }
+
+    CLIENTE cli;
+    // Le os dados e insere dentro da lista
+    while (fread(&cli, sizeof(CLIENTE), 1, f) == 1) {
+        insereOrdenado(li, cli);
+    }
+
+    fclose(f);
+}
+
+

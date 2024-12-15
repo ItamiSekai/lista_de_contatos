@@ -68,4 +68,10 @@ CLIENTE editarCliente (Lista *li, int id);
 /// Remove dados da lista
 int removeOrdenado(Lista *li, int id);
 
+/// Salva dados da lista em arquivo externo
+void salvaDados(Lista *li, char *arquivo);
+
+/// carrega dos dados do arquivo e insere na lista
+void carregaDados(Lista *li, char *arquivo);
+
 #endif // LISTA_CONTATOS_H_INCLUDED

@@ -12,6 +12,9 @@ int main()
         abortaPrograma();
     }
 
+    /// Abrindo arquivo caso exista
+    carregaDados(li, "dados_salvos.txt"); // Abre arquivo e insere de forma ordenada na lista
+
     /// Menu de Opcoes
     int opcao = 0;
     do{
@@ -61,19 +64,17 @@ int main()
                 }
             }
             else{
-                printf("\nVoltando ao menu...\n");
+                printf("\nVoltando ao menu...\n\n");
             }
-            printf("\nErro ao inserir...\n\n");
             system("pause");
             break;
 
-            system("pause");
-                    break;
         case 2:
             system("cls");
             listarLista(li);
             system("pause");
             break;
+
         case 3:
             system("cls");
             int id;
@@ -83,6 +84,7 @@ int main()
             listaUnica(li, id);
             system("pause");
             break;
+
         case 4:
             system("cls");
             char nome[35];
@@ -93,6 +95,7 @@ int main()
             buscaNome(li, nome);
             system("pause");
             break;
+
         case 5:
             system("cls");
             printf("\nDigite o numero de identificacao: ");
@@ -101,6 +104,7 @@ int main()
             editarCliente(li, id);
             system("pause");
             break;
+
         case 6:
             system("cls");
             printf("Qual o numero de identificacao? ");
@@ -109,26 +113,33 @@ int main()
             printf("\nDeseja realmente remover (S/N): ");
             scanf(" %c", &escolha);
             if (escolha == 's' || escolha == 'S'){
-                removeOrdenado(li, id);
-                printf("\nUsuario removido com sucesso!\n\n");
-                system("pause");
-                break;
+                if(removeOrdenado(li, id)){
+                    printf("\nUsuario removido com sucesso!\n\n");
+                }
+                else{
+                    printf("\nErro ao remover usuario...\n\n");
+                }
             }
-            printf("Retornando ao menu...\n\n");
+            else{
+                printf("Retornando ao menu...\n\n");
+            }
             system("pause");
             break;
+
         case 7:
             system("cls");
             printf("Saindo... \n");
+            salvaDados(li, "dados_salvos.txt");
             exit(1);
+
         default:
             system("cls");
-            printf("Opcao invalida, tente novamente.\n");
+            printf("Opcao invalida, tente novamente.\n\n");
             system("pause");
             break;
     }
     system("cls");
-    }while(opcao != 6);
+    }while(opcao != 7);
 
     apagaLista(li);
     return 0;
